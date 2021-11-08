@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sq5Testing.apipro.Models;
+using Sq5Testing.apipro.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,8 @@ namespace Sq5Testing.apipro
             var ConnString = "Server=.;Database=SQ5Testing;User Id=sa;Password=123;";
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(ConnString));
-
+            //DI
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

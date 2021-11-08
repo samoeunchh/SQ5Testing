@@ -14,5 +14,6 @@ namespace Sq5Testing.apipro.Models
 
         }
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Category> Category { get; set; }
     }
 }
