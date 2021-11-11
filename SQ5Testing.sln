@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sq5Testing.apipro", "Sq5Testing.apipro\Sq5Testing.apipro.csproj", "{45B4BB25-5AC2-4629-A336-7468173B5EC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sq5Testing.apipro", "Sq5Testing.apipro\Sq5Testing.apipro.csproj", "{45B4BB25-5AC2-4629-A336-7468173B5EC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQ5Testing.Test1", "SQ5Testing.Test1\SQ5Testing.Test1.csproj", "{6DD6482F-ADEF-416B-9A57-0FA5E8B031B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{45B4BB25-5AC2-4629-A336-7468173B5EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45B4BB25-5AC2-4629-A336-7468173B5EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45B4BB25-5AC2-4629-A336-7468173B5EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD6482F-ADEF-416B-9A57-0FA5E8B031B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD6482F-ADEF-416B-9A57-0FA5E8B031B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD6482F-ADEF-416B-9A57-0FA5E8B031B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD6482F-ADEF-416B-9A57-0FA5E8B031B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

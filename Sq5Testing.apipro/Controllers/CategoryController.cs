@@ -17,17 +17,16 @@ namespace Sq5Testing.apipro.Controllers
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly ApplicationDbContext _context;
-        public CategoryController(ICategoryRepository categoryRepository,
-            ApplicationDbContext context)
+        List<Category> category = new List<Category>();
+        public CategoryController(List<Category> category)
         {
-            _categoryRepository = categoryRepository;
-            _context = context;
+            this.category = category;
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<List<Category>> Get()
+        public IEnumerable<Category> GetAllCategory()
         {
-            return await _categoryRepository.GetCategory();
+            return category;
         }
 
         // GET api/<CategoryController>/5
