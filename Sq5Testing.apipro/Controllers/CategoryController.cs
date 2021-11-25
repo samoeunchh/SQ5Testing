@@ -16,24 +16,29 @@ namespace Sq5Testing.apipro.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly ApplicationDbContext _context;
-        List<Category> category = new List<Category>();
-        public CategoryController(List<Category> category)
+        //private List<Category> _categories;
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            this.category = category;
+            _categoryRepository = categoryRepository;
+
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public IEnumerable<Category> GetAllCategory()
+        public async Task<IEnumerable<Category>> GetAllCategory()
         {
-            return category;
+            return await _categoryRepository.GetCategory();
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{id}")]
-        public async Task<Category> Get(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return await _categoryRepository.GetCategoryById(id);
+            var category = await _categoryRepository.GetCategoryById(id);
+            if (category==null)
+            {
+               return NotFound();
+            }
+            return Ok(category);
         }
 
         // POST api/<CategoryController>
@@ -42,10 +47,10 @@ namespace Sq5Testing.apipro.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(await IsExist(category.CategoryName))
-                {
-                    return BadRequest("This category name is already exist");
-                }
+                //if(await IsExist(category.CategoryName))
+                //{
+                //    return BadRequest("This category name is already exist");
+                //}
                 if (await _categoryRepository.SaveCategory(category))
                 {
                     return Ok();
@@ -57,18 +62,6 @@ namespace Sq5Testing.apipro.Controllers
             }
             return BadRequest(ModelState);
         }
-        private async Task<bool> IsExist(string name)
-            => await _context.Category.AnyAsync(x => x.CategoryName.Equals(name));
-        // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
 
-        // DELETE api/<CategoryController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
