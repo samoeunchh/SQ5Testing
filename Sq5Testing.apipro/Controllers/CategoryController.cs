@@ -24,7 +24,7 @@ namespace Sq5Testing.apipro.Controllers
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public async Task<IEnumerable<Category>> GetAllCategory()
+        public async Task<List<Category>> GetAllCategory()
         {
             return await _categoryRepository.GetCategory();
         }

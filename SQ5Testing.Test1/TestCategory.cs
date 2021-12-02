@@ -25,11 +25,8 @@ namespace SQ5Testing.Test1
             mock.Setup(x => x.GetCategory())
                 .ReturnsAsync(GetCategories());
             var category = await categoryController.GetAllCategory();
-            var cateList = category as List<Category>;
-            Assert.AreEqual(GetCategories().Count, cateList.Count);
-
+            Assert.AreEqual(GetCategories().Count, category.Count);
         }
-       
         [TestMethod]
         public async Task GetCategoryById_ShouldReturnOneCategory()
         {
