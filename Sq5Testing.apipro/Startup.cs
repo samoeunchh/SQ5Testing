@@ -29,7 +29,7 @@ namespace Sq5Testing.apipro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var ConnString = "Server=.;Database=SQ5Testing;User Id=sa;Password=123;";
+            var ConnString = "Server=localhost;Database=SQ5Testing;User Id=sa;Password=Strong.Pwd-123;";
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(ConnString));
             //DI

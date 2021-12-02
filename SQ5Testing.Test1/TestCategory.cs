@@ -6,6 +6,7 @@ using Sq5Testing.apipro.Models;
 using Sq5Testing.apipro.Service;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace SQ5Testing.Test1
@@ -94,6 +95,28 @@ namespace SQ5Testing.Test1
             var okResult = result as BadRequestObjectResult;
             Assert.IsNotNull(okResult);
             Assert.AreEqual(400, okResult.StatusCode);
+        }
+        [TestMethod]
+        public async Task DeleteCategory_ShouldReturnBadRequest()
+        {
+            var categoryId = Guid.NewGuid();
+            mock.Setup(x => x.DeleteCategory(categoryId))
+                .ReturnsAsync(false);
+            var result = await categoryController.Delete(Guid.NewGuid());
+            var okResult = result as BadRequestObjectResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(400, okResult.StatusCode);
+        }
+        [TestMethod]
+        public async Task DeleteCategory_ShouldReturnOk()
+        {
+            var categoryId = Guid.NewGuid();
+            mock.Setup(x => x.DeleteCategory(categoryId))
+                .ReturnsAsync(true);
+            var result = await categoryController.Delete(categoryId);
+            var okResult = result as OkResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(200, okResult.StatusCode);
         }
         public List<Category> GetCategories()
         {

@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Sq5Testing.apipro.Models;
 using Sq5Testing.apipro.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,6 +60,43 @@ namespace Sq5Testing.apipro.Controllers
             }
             return BadRequest(ModelState);
         }
-
+        // POST api/<CategoryController>/id
+        [HttpPut]
+        public async Task<IActionResult> Put(Guid id, Category category)
+        {
+            if(id != category.CategoryId)
+            {
+                return BadRequest();
+            }
+            if (ModelState.IsValid)
+            {
+                if (await _categoryRepository.UpdateCategory(category,id))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Failed");
+                }
+            }
+            return BadRequest(ModelState);
+        }
+        // POST api/<CategoryController>/id
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (await _categoryRepository.DeleteCategory(id))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Failed");
+                }
+            }
+            return BadRequest(ModelState);
+        }
     }
 }
